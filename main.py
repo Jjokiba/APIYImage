@@ -1,7 +1,14 @@
 from fastapi import FastAPI, UploadFile, File
 from typing import Annotated
 from functions import extract_text_from_image
+import os
 app = FastAPI()
+
+if __name__ == "__main__":
+    # Use the provided port if available, otherwise use a default port (e.g., 8000)
+    port = int(os.environ.get("PORT", 8000))
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 @app.get("/my-first-api")
 def hello():
